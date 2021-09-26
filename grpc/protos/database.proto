@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+// import common types
+import "common.proto";
+
+package database;
+
+service Database {
+	// artist related functions
+	rpc GetArtistAlbums(ArtistRequest) returns (AlbumList) {}
+	rpc GetArtistsWithAlbums(common.Empty) returns (ArtistAlbumMap) {}
+
+	// getters for all types
+	rpc GetAlbums(common.Empty) returns (AlbumList) {}
+	rpc GetArtists(common.Empty) returns (ArtistList) {}
+	rpc GetGenres(common.Empty) returns (GenreList) {}
+}
+
+message Artist {
+	string name = 1;
+	string cover_path = 2;
+}
+
+message ArtistList {
+	repeated Artist artists = 1;
+}
+
+message ArtistAlbumMap {
+	map<string, Album> artist_albums = 1;
+}
+
+message Album {
+	string name = 1;
+	string artist = 2;
+	string genre = 3;
+	string folder = 4;
+	string year = 5;
+}
+
+message AlbumList {
+	repeated Album albums = 1;
+}
+
+message Genre {
+	string name = 1;
+}
+
+message GenreList {
+	repeated Genre genres = 1;
+}
+
+message ArtistRequest {
+	string name = 1;
+}

@@ -5,8 +5,14 @@ namespace amp
 void to_json(json &j, const FolderHash &fh)
 {
     j = json{
-        {"path", fh.Path},
-        {"hash", fh.Hash},
+        {
+            "path",
+            fh.Path,
+        },
+        {
+            "hash",
+            fh.Hash,
+        },
     };
 }
 

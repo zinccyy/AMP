@@ -4,7 +4,6 @@
 #include <amp/db/scheme/artist.hpp>
 #include <amp/db/scheme/genre.hpp>
 #include <amp/db/scheme/track.hpp>
-#include <amp/db/pqxx_fix.hpp>
 
 #include <pqxx/pqxx>
 

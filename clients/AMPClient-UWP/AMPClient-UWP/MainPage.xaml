@@ -1,0 +1,35 @@
+﻿<Page
+    x:Class="AMPClient_UWP.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AMPClient_UWP"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
+
+    <Grid>
+        <muxc:NavigationView x:Name="NavView" ItemInvoked="NavView_ItemInvoked" Loaded="NavView_Loaded" BackRequested="NavView_BackRequested">
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Tag="home" Icon="Home" Content="Home"/>
+                <muxc:NavigationViewItemSeparator/>
+                <muxc:NavigationViewItemHeader x:Name="AMPMusicDataPages" Content="AMP Music Data"/>
+                <muxc:NavigationViewItem Tag="artists" Content="Artists" Icon="People"/>
+                <muxc:NavigationViewItem Tag="albums" Content="Albums" Icon="MusicInfo"/>
+                <muxc:NavigationViewItem Tag="tracks" Icon="Audio" Content="Tracks"/>
+                <muxc:NavigationViewItem Tag="folders" Icon="Folder" Content="Folders"/>
+            </muxc:NavigationView.MenuItems>
+
+            <muxc:NavigationView.AutoSuggestBox>
+                <!-- See AutoSuggestBox documentation for
+                 more info about how to implement search. -->
+                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find"/>
+            </muxc:NavigationView.AutoSuggestBox>
+
+            <ScrollViewer>
+                <Frame x:Name="ContentFrame" Padding="12,0,12,24" IsTabStop="True"/>
+            </ScrollViewer>
+        </muxc:NavigationView>
+    </Grid>
+</Page>

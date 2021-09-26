@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package player;
+
+service Player {
+	rpc PlaySong(SongRequest) returns(ActionStatus) {}
+
+	// actions
+	rpc Play(common.Empty) returns (ActionStatus) {}
+	rpc Pause(common.Empty) returns (ActionStatus) {}
+	rpc Stop(common.Empty) returns (ActionStatus) {}
+}
+
+message SongRequest {
+	string song = 1;
+}
+
+enum ActionStatusEnum {
+	OK = 0;
+	FAILED = 1;
+	INTERNAL_ERROR = 2;
+	REQUEST_ERROR = 3;
+}
+
+message ActionStatus {
+	ActionStatusEnum status = 1;
+}

@@ -1,6 +1,7 @@
 .cache/
 .vscode/
 config.json
+CMakeSettings.json
 build/
 
 # clients

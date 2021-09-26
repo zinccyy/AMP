@@ -1,6 +1,7 @@
 #include <amp/context.hpp>
 #include <amp/log.hpp>
 #include <amp/utils/path.hpp>
+#include <amp/rpc/server.hpp>
 
 // db data
 #include <amp/db/database_manager.hpp>
@@ -31,7 +32,7 @@ static int generateAlbumCover(const TagLib::ID3v2::Tag *tag, const std::string &
 // thread function for checking changes in a folder - once the folder contents have changed -> the folder should be rescanned and changes should be added
 static void checkForFolderChanges(Context *ctx, FolderHash *folder);
 // init members
-Context::Context()
+Context::Context(rpc::Server *server) : mServer(server)
 {
 }
 // loads all needed data and initializes the context

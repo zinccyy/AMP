@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+// imports
+import "common.proto";
+
+package sys;
+
+service Sys {
+	rpc AddFolder(FolderRequest) returns (common.Empty) {}
+	rpc Shutdown(common.Empty) returns (common.Empty) {}
+}
+
+message FolderRequest {
+	string path = 1;
+}

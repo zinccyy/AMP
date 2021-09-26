@@ -11,12 +11,29 @@
 
 namespace amp
 {
-// context contains all data necessarry for music playing - database API, paths to the music folders etc.
-class Context
+namespace rpc
 {
-  public:
+class Server;
+}
+// context contains all data necessarry for music playing - database API, paths to the music folders etc.
+struct Context
+{
+    // members:
+
+    // manages database data and converts rows recieved to cxx struct types
+    db::DatabaseManager mDatabase;
+
+    // folders containing music - to be scanned recursively
+    std::vector<FolderHash> mFolders;
+
+    // music / audio player
+    audio::Player mAudioPlayer;
+
+    // server pointer - used for closing the server by RPCs
+    rpc::Server *mServer;
+
     // init members
-    Context();
+    Context(rpc::Server *server);
 
     // loads all needed data and initializes the context
     int load();
@@ -27,21 +44,5 @@ class Context
     // rescan search path -> doesn't care for the folder already existing
     int rescanSearchPath(const std::string &path);
     int rescanSearchPath(const std::list<FolderHash> &folders);
-
-    // folders getter
-    std::vector<FolderHash> &getFolders()
-    {
-        return mFolders;
-    }
-
-  private:
-    // manages database data and converts rows recieved to cxx struct types
-    db::DatabaseManager mDatabase;
-
-    // folders containing music - to be scanned recursively
-    std::vector<FolderHash> mFolders;
-
-    // music / audio player
-    audio::Player mAudioPlayer;
 };
 } // namespace amp

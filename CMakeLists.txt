@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(AMP VERSION 1.0.0)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # libuv - async server
@@ -19,11 +19,13 @@ find_package(taglib CONFIG REQUIRED)
 # ffmpeg
 find_package(FFMPEG REQUIRED)
 
-# sdl2 - for testing ffmpeg
-find_package(SDL2 CONFIG REQUIRED)
+# grpc
+find_package(gRPC CONFIG REQUIRED)
 
 include_directories(
     "lib"
+
+    "grpc/protobuf/cpp"
 
     # ffmpeg
     ${FFMPEG_INCLUDE_DIRS}
@@ -44,16 +46,20 @@ set(
     LIB_SOURCES
 
     # main files
-    "lib/amp/server.cpp"
-    "lib/amp/jsonrpc.cpp"
     "lib/amp/context.cpp"
     "lib/amp/folder_hash.cpp"
+
+    # rpc
+    "lib/amp/rpc/server.cpp"
 
     # audio
     "lib/amp/audio/player.cpp"
 
     # database
     "lib/amp/db/database_manager.cpp"
+
+    # rpc
+    "lib/amp/rpc/server.cpp"
 
     # utils
     "lib/amp/utils/path.cpp"
@@ -84,12 +90,36 @@ target_link_libraries(
 
     # ffmpeg
     ${FFMPEG_LIBRARIES}
+
+    # grpc
+    gRPC::gpr gRPC::upb gRPC::grpc gRPC::grpc++ gRPC::grpc++_reflection
 )
 
 # exe
 add_executable(
     ${CMAKE_PROJECT_NAME}-bin
     "app/amp.cpp"
+
+    # services
+
+    # common
+    "grpc/protobuf/cpp/common.grpc.pb.cc"
+    "grpc/protobuf/cpp/common.pb.cc"
+
+    # database_service
+    "lib/amp/rpc/services/database_service/database_service.cpp"
+    "grpc/protobuf/cpp/database.grpc.pb.cc"
+    "grpc/protobuf/cpp/database.pb.cc"
+
+    # player_service
+    "lib/amp/rpc/services/player_service/player_service.cpp"
+    "grpc/protobuf/cpp/player.grpc.pb.cc"
+    "grpc/protobuf/cpp/player.pb.cc"
+
+    # system service
+    "lib/amp/rpc/services/sys_service/sys_service.cpp"
+    "grpc/protobuf/cpp/sys.grpc.pb.cc"
+    "grpc/protobuf/cpp/sys.pb.cc"
 )
 target_link_libraries(
     ${CMAKE_PROJECT_NAME}-bin
@@ -120,91 +150,6 @@ set_target_properties(
 )
 
 # tests
-
-# test_client
-add_executable(
-    test_client
-
-    # main source
-    "test/test_client.cpp"
-)
-target_link_libraries(
-    test_client
-
-    # lib
-    ${CMAKE_PROJECT_NAME}
-
-    # libuv
-    unofficial::libuv::libuv 
-
-    # taglib
-    tag tag::tag
-
-    # json lib
-    nlohmann_json nlohmann_json::nlohmann_json
-)
-
-
-# test_taglib
-add_executable(
-    test_taglib
-
-    # main source
-    "test/test_taglib.cpp"
-)
-target_link_libraries(
-    test_taglib
-
-    # taglib
-    tag tag::tag
-
-    ${FFMPEG_LIBRARIES}
-)
-
-# test_ffmpeg
-add_executable(
-    test_ffmpeg
-
-    # main source
-    "test/test_ffmpeg.cpp"
-)
-target_link_libraries(
-    test_ffmpeg
-
-    # ffmpeg
-    ${FFMPEG_LIBRARIES}
-
-    # sdl2
-    SDL2::SDL2
-)
-
-# test_playback
-add_executable(
-    test_playback
-
-    # main source
-    "test/test_playback.cpp"
-)
-target_link_libraries(
-    test_playback
-
-    # ffmpeg
-    ${FFMPEG_LIBRARIES}
-)
-
-# test_player
-add_executable(
-    test_player
-
-    # main source
-    "test/test_player.cpp"
-)
-target_link_libraries(
-    test_player
-
-    # ffmpeg
-    ${FFMPEG_LIBRARIES}
-
-    # lib
-    ${CMAKE_PROJECT_NAME}
+add_subdirectory(
+    "test"
 )
