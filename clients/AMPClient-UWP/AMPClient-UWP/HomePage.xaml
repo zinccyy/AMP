@@ -10,6 +10,5 @@
 
     <Grid>
         <TextBlock Text="Home"></TextBlock>
-        <Image Source="file://E:/cover.png" Visibility="Visible" Height="100" />
     </Grid>
 </Page>

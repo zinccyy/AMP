@@ -11,15 +11,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Albums" />
-        <ListView ItemsSource="{x:Bind Albums}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <ListView ItemsSource="{x:Bind Albums}" HorizontalAlignment="Stretch" >
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="database:Album">
-                    <StackPanel Orientation="Horizontal" Margin="6">
+                    <StackPanel Orientation="Horizontal" Margin="8">
                         <SymbolIcon Symbol="Audio" Margin="0,0,12,0"/>
                         <StackPanel>
+                            <TextBlock Text="{x:Bind Artist}" FontWeight="Medium"/>
                             <TextBlock Text="{x:Bind Name}" FontWeight="Bold"/>
-                            <TextBlock Text="{x:Bind Artist}"/>
+                            <TextBlock Text="{x:Bind Year}" />
+                            <TextBlock Text="{x:Bind Genre}" />
                         </StackPanel>
                     </StackPanel>
                 </DataTemplate>

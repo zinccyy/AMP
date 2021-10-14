@@ -14,6 +14,8 @@ service Database {
 	rpc GetAlbums(common.Empty) returns (AlbumList) {}
 	rpc GetArtists(common.Empty) returns (ArtistList) {}
 	rpc GetGenres(common.Empty) returns (GenreList) {}
+
+	rpc GetAlbumCover(Album) returns (stream ImageData) {}
 }
 
 message Artist {
@@ -51,4 +53,8 @@ message GenreList {
 
 message ArtistRequest {
 	string name = 1;
+}
+
+message ImageData {
+	bytes data = 1;
 }

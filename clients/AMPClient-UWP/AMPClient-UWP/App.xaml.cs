@@ -89,6 +89,9 @@ namespace AMPClient_UWP
             channel = new Channel("127.0.0.1:3000", ChannelCredentials.Insecure);
 
             DatabaseClient = new Database.Database.DatabaseClient(channel);
+
+            // by default enable windows app sounds - TODO: later add option in the options to disable
+            ElementSoundPlayer.State = ElementSoundPlayerState.On;
         }
 
         /// <summary>

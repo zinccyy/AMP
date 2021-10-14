@@ -35,7 +35,6 @@ namespace AMPClient_UWP
 
             foreach(var album in albums.Albums)
             {
-                album.Folder += "\\cover.jpg";
                 Albums.Add(album);
             }
         }
