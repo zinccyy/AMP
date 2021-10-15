@@ -31,6 +31,8 @@ class DatabaseService final : public ServiceData, public database::Database::Ser
     grpc::Status GetArtists(grpc::ServerContext *ctx, const common::Empty *request, database::ArtistList *reply) override;
     grpc::Status GetAlbums(grpc::ServerContext *ctx, const common::Empty *request, database::AlbumList *reply) override;
     grpc::Status GetGenres(grpc::ServerContext *ctx, const common::Empty *request, database::GenreList *reply) override;
+
+    grpc::Status GetAlbumCover(grpc::ServerContext *ctx, const database::AlbumRequest *request, grpc::ServerWriter<database::ImageChunk> *reply) override;
 };
 } // namespace service
 } // namespace rpc

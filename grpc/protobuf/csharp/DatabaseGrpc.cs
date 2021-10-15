@@ -48,6 +48,8 @@ namespace Database {
     static readonly grpc::Marshaller<global::Database.ArtistAlbumMap> __Marshaller_database_ArtistAlbumMap = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.ArtistAlbumMap.Parser));
     static readonly grpc::Marshaller<global::Database.ArtistList> __Marshaller_database_ArtistList = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.ArtistList.Parser));
     static readonly grpc::Marshaller<global::Database.GenreList> __Marshaller_database_GenreList = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.GenreList.Parser));
+    static readonly grpc::Marshaller<global::Database.AlbumRequest> __Marshaller_database_AlbumRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.AlbumRequest.Parser));
+    static readonly grpc::Marshaller<global::Database.ImageChunk> __Marshaller_database_ImageChunk = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::Database.ImageChunk.Parser));
 
     static readonly grpc::Method<global::Database.ArtistRequest, global::Database.AlbumList> __Method_GetArtistAlbums = new grpc::Method<global::Database.ArtistRequest, global::Database.AlbumList>(
         grpc::MethodType.Unary,
@@ -83,6 +85,13 @@ namespace Database {
         "GetGenres",
         __Marshaller_common_Empty,
         __Marshaller_database_GenreList);
+
+    static readonly grpc::Method<global::Database.AlbumRequest, global::Database.ImageChunk> __Method_GetAlbumCover = new grpc::Method<global::Database.AlbumRequest, global::Database.ImageChunk>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetAlbumCover",
+        __Marshaller_database_AlbumRequest,
+        __Marshaller_database_ImageChunk);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -127,6 +136,11 @@ namespace Database {
       }
 
       public virtual global::System.Threading.Tasks.Task<global::Database.GenreList> GetGenres(global::Common.Empty request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetAlbumCover(global::Database.AlbumRequest request, grpc::IServerStreamWriter<global::Database.ImageChunk> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -292,6 +306,14 @@ namespace Database {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetGenres, null, options, request);
       }
+      public virtual grpc::AsyncServerStreamingCall<global::Database.ImageChunk> GetAlbumCover(global::Database.AlbumRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAlbumCover(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Database.ImageChunk> GetAlbumCover(global::Database.AlbumRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetAlbumCover, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override DatabaseClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -308,7 +330,8 @@ namespace Database {
           .AddMethod(__Method_GetArtistsWithAlbums, serviceImpl.GetArtistsWithAlbums)
           .AddMethod(__Method_GetAlbums, serviceImpl.GetAlbums)
           .AddMethod(__Method_GetArtists, serviceImpl.GetArtists)
-          .AddMethod(__Method_GetGenres, serviceImpl.GetGenres).Build();
+          .AddMethod(__Method_GetGenres, serviceImpl.GetGenres)
+          .AddMethod(__Method_GetAlbumCover, serviceImpl.GetAlbumCover).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -322,6 +345,7 @@ namespace Database {
       serviceBinder.AddMethod(__Method_GetAlbums, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Common.Empty, global::Database.AlbumList>(serviceImpl.GetAlbums));
       serviceBinder.AddMethod(__Method_GetArtists, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Common.Empty, global::Database.ArtistList>(serviceImpl.GetArtists));
       serviceBinder.AddMethod(__Method_GetGenres, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Common.Empty, global::Database.GenreList>(serviceImpl.GetGenres));
+      serviceBinder.AddMethod(__Method_GetAlbumCover, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Database.AlbumRequest, global::Database.ImageChunk>(serviceImpl.GetAlbumCover));
     }
 
   }

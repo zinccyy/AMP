@@ -15,6 +15,9 @@ service Player {
 
 message SongRequest {
 	string song = 1;
+	string album = 2;
+	string artist = 3;
+	string genre = 4;
 }
 
 enum ActionStatusEnum {

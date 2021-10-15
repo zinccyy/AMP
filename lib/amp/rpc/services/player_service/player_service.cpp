@@ -15,7 +15,10 @@ grpc::Status PlayerService::PlaySong(grpc::ServerContext *context, const player:
 {
     grpc::Status status(grpc::Status::OK);
     char query_buffer[2048] = {0};
-    const std::string &song = request->song();
+    auto song = request->song();
+    auto album = request->album();
+    auto artist = request->artist();
+    auto genre = request->genre();
 
     AMP_LOG_DBG("PlayerService::PlaySong() called");
 

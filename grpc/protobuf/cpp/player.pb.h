@@ -213,6 +213,9 @@ class SongRequest PROTOBUF_FINAL :
 
   enum : int {
     kSongFieldNumber = 1,
+    kAlbumFieldNumber = 2,
+    kArtistFieldNumber = 3,
+    kGenreFieldNumber = 4,
   };
   // string song = 1;
   void clear_song();
@@ -230,6 +233,54 @@ class SongRequest PROTOBUF_FINAL :
   std::string* _internal_mutable_song();
   public:
 
+  // string album = 2;
+  void clear_album();
+  const std::string& album() const;
+  void set_album(const std::string& value);
+  void set_album(std::string&& value);
+  void set_album(const char* value);
+  void set_album(const char* value, size_t size);
+  std::string* mutable_album();
+  std::string* release_album();
+  void set_allocated_album(std::string* album);
+  private:
+  const std::string& _internal_album() const;
+  void _internal_set_album(const std::string& value);
+  std::string* _internal_mutable_album();
+  public:
+
+  // string artist = 3;
+  void clear_artist();
+  const std::string& artist() const;
+  void set_artist(const std::string& value);
+  void set_artist(std::string&& value);
+  void set_artist(const char* value);
+  void set_artist(const char* value, size_t size);
+  std::string* mutable_artist();
+  std::string* release_artist();
+  void set_allocated_artist(std::string* artist);
+  private:
+  const std::string& _internal_artist() const;
+  void _internal_set_artist(const std::string& value);
+  std::string* _internal_mutable_artist();
+  public:
+
+  // string genre = 4;
+  void clear_genre();
+  const std::string& genre() const;
+  void set_genre(const std::string& value);
+  void set_genre(std::string&& value);
+  void set_genre(const char* value);
+  void set_genre(const char* value, size_t size);
+  std::string* mutable_genre();
+  std::string* release_genre();
+  void set_allocated_genre(std::string* genre);
+  private:
+  const std::string& _internal_genre() const;
+  void _internal_set_genre(const std::string& value);
+  std::string* _internal_mutable_genre();
+  public:
+
   // @@protoc_insertion_point(class_scope:player.SongRequest)
  private:
   class _Internal;
@@ -238,6 +289,9 @@ class SongRequest PROTOBUF_FINAL :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr song_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr album_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr artist_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr genre_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_player_2eproto;
 };
@@ -448,6 +502,189 @@ inline void SongRequest::set_allocated_song(std::string* song) {
   song_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), song,
       GetArena());
   // @@protoc_insertion_point(field_set_allocated:player.SongRequest.song)
+}
+
+// string album = 2;
+inline void SongRequest::clear_album() {
+  album_.ClearToEmpty();
+}
+inline const std::string& SongRequest::album() const {
+  // @@protoc_insertion_point(field_get:player.SongRequest.album)
+  return _internal_album();
+}
+inline void SongRequest::set_album(const std::string& value) {
+  _internal_set_album(value);
+  // @@protoc_insertion_point(field_set:player.SongRequest.album)
+}
+inline std::string* SongRequest::mutable_album() {
+  // @@protoc_insertion_point(field_mutable:player.SongRequest.album)
+  return _internal_mutable_album();
+}
+inline const std::string& SongRequest::_internal_album() const {
+  return album_.Get();
+}
+inline void SongRequest::_internal_set_album(const std::string& value) {
+  
+  album_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void SongRequest::set_album(std::string&& value) {
+  
+  album_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:player.SongRequest.album)
+}
+inline void SongRequest::set_album(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  album_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:player.SongRequest.album)
+}
+inline void SongRequest::set_album(const char* value,
+    size_t size) {
+  
+  album_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:player.SongRequest.album)
+}
+inline std::string* SongRequest::_internal_mutable_album() {
+  
+  return album_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* SongRequest::release_album() {
+  // @@protoc_insertion_point(field_release:player.SongRequest.album)
+  return album_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void SongRequest::set_allocated_album(std::string* album) {
+  if (album != nullptr) {
+    
+  } else {
+    
+  }
+  album_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), album,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:player.SongRequest.album)
+}
+
+// string artist = 3;
+inline void SongRequest::clear_artist() {
+  artist_.ClearToEmpty();
+}
+inline const std::string& SongRequest::artist() const {
+  // @@protoc_insertion_point(field_get:player.SongRequest.artist)
+  return _internal_artist();
+}
+inline void SongRequest::set_artist(const std::string& value) {
+  _internal_set_artist(value);
+  // @@protoc_insertion_point(field_set:player.SongRequest.artist)
+}
+inline std::string* SongRequest::mutable_artist() {
+  // @@protoc_insertion_point(field_mutable:player.SongRequest.artist)
+  return _internal_mutable_artist();
+}
+inline const std::string& SongRequest::_internal_artist() const {
+  return artist_.Get();
+}
+inline void SongRequest::_internal_set_artist(const std::string& value) {
+  
+  artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void SongRequest::set_artist(std::string&& value) {
+  
+  artist_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:player.SongRequest.artist)
+}
+inline void SongRequest::set_artist(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:player.SongRequest.artist)
+}
+inline void SongRequest::set_artist(const char* value,
+    size_t size) {
+  
+  artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:player.SongRequest.artist)
+}
+inline std::string* SongRequest::_internal_mutable_artist() {
+  
+  return artist_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* SongRequest::release_artist() {
+  // @@protoc_insertion_point(field_release:player.SongRequest.artist)
+  return artist_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void SongRequest::set_allocated_artist(std::string* artist) {
+  if (artist != nullptr) {
+    
+  } else {
+    
+  }
+  artist_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), artist,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:player.SongRequest.artist)
+}
+
+// string genre = 4;
+inline void SongRequest::clear_genre() {
+  genre_.ClearToEmpty();
+}
+inline const std::string& SongRequest::genre() const {
+  // @@protoc_insertion_point(field_get:player.SongRequest.genre)
+  return _internal_genre();
+}
+inline void SongRequest::set_genre(const std::string& value) {
+  _internal_set_genre(value);
+  // @@protoc_insertion_point(field_set:player.SongRequest.genre)
+}
+inline std::string* SongRequest::mutable_genre() {
+  // @@protoc_insertion_point(field_mutable:player.SongRequest.genre)
+  return _internal_mutable_genre();
+}
+inline const std::string& SongRequest::_internal_genre() const {
+  return genre_.Get();
+}
+inline void SongRequest::_internal_set_genre(const std::string& value) {
+  
+  genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void SongRequest::set_genre(std::string&& value) {
+  
+  genre_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:player.SongRequest.genre)
+}
+inline void SongRequest::set_genre(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:player.SongRequest.genre)
+}
+inline void SongRequest::set_genre(const char* value,
+    size_t size) {
+  
+  genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:player.SongRequest.genre)
+}
+inline std::string* SongRequest::_internal_mutable_genre() {
+  
+  return genre_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* SongRequest::release_genre() {
+  // @@protoc_insertion_point(field_release:player.SongRequest.genre)
+  return genre_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void SongRequest::set_allocated_genre(std::string* genre) {
+  if (genre != nullptr) {
+    
+  } else {
+    
+  }
+  genre_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), genre,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:player.SongRequest.genre)
 }
 
 // -------------------------------------------------------------------

@@ -50,7 +50,7 @@ struct TableStruct_database_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[9]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -65,6 +65,9 @@ extern AlbumDefaultTypeInternal _Album_default_instance_;
 class AlbumList;
 struct AlbumListDefaultTypeInternal;
 extern AlbumListDefaultTypeInternal _AlbumList_default_instance_;
+class AlbumRequest;
+struct AlbumRequestDefaultTypeInternal;
+extern AlbumRequestDefaultTypeInternal _AlbumRequest_default_instance_;
 class Artist;
 struct ArtistDefaultTypeInternal;
 extern ArtistDefaultTypeInternal _Artist_default_instance_;
@@ -86,10 +89,17 @@ extern GenreDefaultTypeInternal _Genre_default_instance_;
 class GenreList;
 struct GenreListDefaultTypeInternal;
 extern GenreListDefaultTypeInternal _GenreList_default_instance_;
+class ImageChunk;
+struct ImageChunkDefaultTypeInternal;
+extern ImageChunkDefaultTypeInternal _ImageChunk_default_instance_;
+class ImageData;
+struct ImageDataDefaultTypeInternal;
+extern ImageDataDefaultTypeInternal _ImageData_default_instance_;
 }  // namespace database
 PROTOBUF_NAMESPACE_OPEN
 template<> ::database::Album* Arena::CreateMaybeMessage<::database::Album>(Arena*);
 template<> ::database::AlbumList* Arena::CreateMaybeMessage<::database::AlbumList>(Arena*);
+template<> ::database::AlbumRequest* Arena::CreateMaybeMessage<::database::AlbumRequest>(Arena*);
 template<> ::database::Artist* Arena::CreateMaybeMessage<::database::Artist>(Arena*);
 template<> ::database::ArtistAlbumMap* Arena::CreateMaybeMessage<::database::ArtistAlbumMap>(Arena*);
 template<> ::database::ArtistAlbumMap_ArtistAlbumsEntry_DoNotUse* Arena::CreateMaybeMessage<::database::ArtistAlbumMap_ArtistAlbumsEntry_DoNotUse>(Arena*);
@@ -97,10 +107,336 @@ template<> ::database::ArtistList* Arena::CreateMaybeMessage<::database::ArtistL
 template<> ::database::ArtistRequest* Arena::CreateMaybeMessage<::database::ArtistRequest>(Arena*);
 template<> ::database::Genre* Arena::CreateMaybeMessage<::database::Genre>(Arena*);
 template<> ::database::GenreList* Arena::CreateMaybeMessage<::database::GenreList>(Arena*);
+template<> ::database::ImageChunk* Arena::CreateMaybeMessage<::database::ImageChunk>(Arena*);
+template<> ::database::ImageData* Arena::CreateMaybeMessage<::database::ImageData>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace database {
 
 // ===================================================================
+
+class ImageChunk PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:database.ImageChunk) */ {
+ public:
+  inline ImageChunk() : ImageChunk(nullptr) {}
+  virtual ~ImageChunk();
+  explicit constexpr ImageChunk(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ImageChunk(const ImageChunk& from);
+  ImageChunk(ImageChunk&& from) noexcept
+    : ImageChunk() {
+    *this = ::std::move(from);
+  }
+
+  inline ImageChunk& operator=(const ImageChunk& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ImageChunk& operator=(ImageChunk&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ImageChunk& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ImageChunk* internal_default_instance() {
+    return reinterpret_cast<const ImageChunk*>(
+               &_ImageChunk_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(ImageChunk& a, ImageChunk& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ImageChunk* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ImageChunk* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ImageChunk* New() const final {
+    return CreateMaybeMessage<ImageChunk>(nullptr);
+  }
+
+  ImageChunk* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ImageChunk>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ImageChunk& from);
+  void MergeFrom(const ImageChunk& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ImageChunk* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "database.ImageChunk";
+  }
+  protected:
+  explicit ImageChunk(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_database_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // bytes data = 1;
+  void clear_data();
+  const std::string& data() const;
+  void set_data(const std::string& value);
+  void set_data(std::string&& value);
+  void set_data(const char* value);
+  void set_data(const void* value, size_t size);
+  std::string* mutable_data();
+  std::string* release_data();
+  void set_allocated_data(std::string* data);
+  private:
+  const std::string& _internal_data() const;
+  void _internal_set_data(const std::string& value);
+  std::string* _internal_mutable_data();
+  public:
+
+  // @@protoc_insertion_point(class_scope:database.ImageChunk)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_database_2eproto;
+};
+// -------------------------------------------------------------------
+
+class AlbumRequest PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:database.AlbumRequest) */ {
+ public:
+  inline AlbumRequest() : AlbumRequest(nullptr) {}
+  virtual ~AlbumRequest();
+  explicit constexpr AlbumRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  AlbumRequest(const AlbumRequest& from);
+  AlbumRequest(AlbumRequest&& from) noexcept
+    : AlbumRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline AlbumRequest& operator=(const AlbumRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline AlbumRequest& operator=(AlbumRequest&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const AlbumRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const AlbumRequest* internal_default_instance() {
+    return reinterpret_cast<const AlbumRequest*>(
+               &_AlbumRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(AlbumRequest& a, AlbumRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(AlbumRequest* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(AlbumRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline AlbumRequest* New() const final {
+    return CreateMaybeMessage<AlbumRequest>(nullptr);
+  }
+
+  AlbumRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<AlbumRequest>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const AlbumRequest& from);
+  void MergeFrom(const AlbumRequest& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(AlbumRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "database.AlbumRequest";
+  }
+  protected:
+  explicit AlbumRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_database_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kArtistFieldNumber = 2,
+    kGenreFieldNumber = 3,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string artist = 2;
+  void clear_artist();
+  const std::string& artist() const;
+  void set_artist(const std::string& value);
+  void set_artist(std::string&& value);
+  void set_artist(const char* value);
+  void set_artist(const char* value, size_t size);
+  std::string* mutable_artist();
+  std::string* release_artist();
+  void set_allocated_artist(std::string* artist);
+  private:
+  const std::string& _internal_artist() const;
+  void _internal_set_artist(const std::string& value);
+  std::string* _internal_mutable_artist();
+  public:
+
+  // string genre = 3;
+  void clear_genre();
+  const std::string& genre() const;
+  void set_genre(const std::string& value);
+  void set_genre(std::string&& value);
+  void set_genre(const char* value);
+  void set_genre(const char* value, size_t size);
+  std::string* mutable_genre();
+  std::string* release_genre();
+  void set_allocated_genre(std::string* genre);
+  private:
+  const std::string& _internal_genre() const;
+  void _internal_set_genre(const std::string& value);
+  std::string* _internal_mutable_genre();
+  public:
+
+  // @@protoc_insertion_point(class_scope:database.AlbumRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr artist_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr genre_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_database_2eproto;
+};
+// -------------------------------------------------------------------
 
 class Artist PROTOBUF_FINAL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:database.Artist) */ {
@@ -145,7 +481,7 @@ class Artist PROTOBUF_FINAL :
                &_Artist_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    2;
 
   friend void swap(Artist& a, Artist& b) {
     a.Swap(&b);
@@ -307,7 +643,7 @@ class ArtistList PROTOBUF_FINAL :
                &_ArtistList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    3;
 
   friend void swap(ArtistList& a, ArtistList& b) {
     a.Swap(&b);
@@ -434,7 +770,7 @@ public:
   private:
   static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
     ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_database_2eproto);
-    return ::descriptor_table_database_2eproto.file_level_metadata[2];
+    return ::descriptor_table_database_2eproto.file_level_metadata[4];
   }
 
   public:
@@ -485,7 +821,7 @@ class ArtistAlbumMap PROTOBUF_FINAL :
                &_ArtistAlbumMap_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(ArtistAlbumMap& a, ArtistAlbumMap& b) {
     a.Swap(&b);
@@ -635,7 +971,7 @@ class Album PROTOBUF_FINAL :
                &_Album_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(Album& a, Album& b) {
     a.Swap(&b);
@@ -851,7 +1187,7 @@ class AlbumList PROTOBUF_FINAL :
                &_AlbumList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(AlbumList& a, AlbumList& b) {
     a.Swap(&b);
@@ -997,7 +1333,7 @@ class Genre PROTOBUF_FINAL :
                &_Genre_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(Genre& a, Genre& b) {
     a.Swap(&b);
@@ -1141,7 +1477,7 @@ class GenreList PROTOBUF_FINAL :
                &_GenreList_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(GenreList& a, GenreList& b) {
     a.Swap(&b);
@@ -1287,7 +1623,7 @@ class ArtistRequest PROTOBUF_FINAL :
                &_ArtistRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(ArtistRequest& a, ArtistRequest& b) {
     a.Swap(&b);
@@ -1386,6 +1722,150 @@ class ArtistRequest PROTOBUF_FINAL :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_database_2eproto;
 };
+// -------------------------------------------------------------------
+
+class ImageData PROTOBUF_FINAL :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:database.ImageData) */ {
+ public:
+  inline ImageData() : ImageData(nullptr) {}
+  virtual ~ImageData();
+  explicit constexpr ImageData(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  ImageData(const ImageData& from);
+  ImageData(ImageData&& from) noexcept
+    : ImageData() {
+    *this = ::std::move(from);
+  }
+
+  inline ImageData& operator=(const ImageData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ImageData& operator=(ImageData&& from) noexcept {
+    if (GetArena() == from.GetArena()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ImageData& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const ImageData* internal_default_instance() {
+    return reinterpret_cast<const ImageData*>(
+               &_ImageData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(ImageData& a, ImageData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ImageData* other) {
+    if (other == this) return;
+    if (GetArena() == other->GetArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(ImageData* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ImageData* New() const final {
+    return CreateMaybeMessage<ImageData>(nullptr);
+  }
+
+  ImageData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ImageData>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ImageData& from);
+  void MergeFrom(const ImageData& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ImageData* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "database.ImageData";
+  }
+  protected:
+  explicit ImageData(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    return ::descriptor_table_database_2eproto_metadata_getter(kIndexInFileMessages);
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDataFieldNumber = 1,
+  };
+  // bytes data = 1;
+  void clear_data();
+  const std::string& data() const;
+  void set_data(const std::string& value);
+  void set_data(std::string&& value);
+  void set_data(const char* value);
+  void set_data(const void* value, size_t size);
+  std::string* mutable_data();
+  std::string* release_data();
+  void set_allocated_data(std::string* data);
+  private:
+  const std::string& _internal_data() const;
+  void _internal_set_data(const std::string& value);
+  std::string* _internal_mutable_data();
+  public:
+
+  // @@protoc_insertion_point(class_scope:database.ImageData)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr data_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_database_2eproto;
+};
 // ===================================================================
 
 
@@ -1395,6 +1875,258 @@ class ArtistRequest PROTOBUF_FINAL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// ImageChunk
+
+// bytes data = 1;
+inline void ImageChunk::clear_data() {
+  data_.ClearToEmpty();
+}
+inline const std::string& ImageChunk::data() const {
+  // @@protoc_insertion_point(field_get:database.ImageChunk.data)
+  return _internal_data();
+}
+inline void ImageChunk::set_data(const std::string& value) {
+  _internal_set_data(value);
+  // @@protoc_insertion_point(field_set:database.ImageChunk.data)
+}
+inline std::string* ImageChunk::mutable_data() {
+  // @@protoc_insertion_point(field_mutable:database.ImageChunk.data)
+  return _internal_mutable_data();
+}
+inline const std::string& ImageChunk::_internal_data() const {
+  return data_.Get();
+}
+inline void ImageChunk::_internal_set_data(const std::string& value) {
+  
+  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ImageChunk::set_data(std::string&& value) {
+  
+  data_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:database.ImageChunk.data)
+}
+inline void ImageChunk::set_data(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:database.ImageChunk.data)
+}
+inline void ImageChunk::set_data(const void* value,
+    size_t size) {
+  
+  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:database.ImageChunk.data)
+}
+inline std::string* ImageChunk::_internal_mutable_data() {
+  
+  return data_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* ImageChunk::release_data() {
+  // @@protoc_insertion_point(field_release:database.ImageChunk.data)
+  return data_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ImageChunk::set_allocated_data(std::string* data) {
+  if (data != nullptr) {
+    
+  } else {
+    
+  }
+  data_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:database.ImageChunk.data)
+}
+
+// -------------------------------------------------------------------
+
+// AlbumRequest
+
+// string name = 1;
+inline void AlbumRequest::clear_name() {
+  name_.ClearToEmpty();
+}
+inline const std::string& AlbumRequest::name() const {
+  // @@protoc_insertion_point(field_get:database.AlbumRequest.name)
+  return _internal_name();
+}
+inline void AlbumRequest::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:database.AlbumRequest.name)
+}
+inline std::string* AlbumRequest::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:database.AlbumRequest.name)
+  return _internal_mutable_name();
+}
+inline const std::string& AlbumRequest::_internal_name() const {
+  return name_.Get();
+}
+inline void AlbumRequest::_internal_set_name(const std::string& value) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void AlbumRequest::set_name(std::string&& value) {
+  
+  name_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:database.AlbumRequest.name)
+}
+inline void AlbumRequest::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:database.AlbumRequest.name)
+}
+inline void AlbumRequest::set_name(const char* value,
+    size_t size) {
+  
+  name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:database.AlbumRequest.name)
+}
+inline std::string* AlbumRequest::_internal_mutable_name() {
+  
+  return name_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* AlbumRequest::release_name() {
+  // @@protoc_insertion_point(field_release:database.AlbumRequest.name)
+  return name_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AlbumRequest::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:database.AlbumRequest.name)
+}
+
+// string artist = 2;
+inline void AlbumRequest::clear_artist() {
+  artist_.ClearToEmpty();
+}
+inline const std::string& AlbumRequest::artist() const {
+  // @@protoc_insertion_point(field_get:database.AlbumRequest.artist)
+  return _internal_artist();
+}
+inline void AlbumRequest::set_artist(const std::string& value) {
+  _internal_set_artist(value);
+  // @@protoc_insertion_point(field_set:database.AlbumRequest.artist)
+}
+inline std::string* AlbumRequest::mutable_artist() {
+  // @@protoc_insertion_point(field_mutable:database.AlbumRequest.artist)
+  return _internal_mutable_artist();
+}
+inline const std::string& AlbumRequest::_internal_artist() const {
+  return artist_.Get();
+}
+inline void AlbumRequest::_internal_set_artist(const std::string& value) {
+  
+  artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void AlbumRequest::set_artist(std::string&& value) {
+  
+  artist_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:database.AlbumRequest.artist)
+}
+inline void AlbumRequest::set_artist(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:database.AlbumRequest.artist)
+}
+inline void AlbumRequest::set_artist(const char* value,
+    size_t size) {
+  
+  artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:database.AlbumRequest.artist)
+}
+inline std::string* AlbumRequest::_internal_mutable_artist() {
+  
+  return artist_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* AlbumRequest::release_artist() {
+  // @@protoc_insertion_point(field_release:database.AlbumRequest.artist)
+  return artist_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AlbumRequest::set_allocated_artist(std::string* artist) {
+  if (artist != nullptr) {
+    
+  } else {
+    
+  }
+  artist_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), artist,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:database.AlbumRequest.artist)
+}
+
+// string genre = 3;
+inline void AlbumRequest::clear_genre() {
+  genre_.ClearToEmpty();
+}
+inline const std::string& AlbumRequest::genre() const {
+  // @@protoc_insertion_point(field_get:database.AlbumRequest.genre)
+  return _internal_genre();
+}
+inline void AlbumRequest::set_genre(const std::string& value) {
+  _internal_set_genre(value);
+  // @@protoc_insertion_point(field_set:database.AlbumRequest.genre)
+}
+inline std::string* AlbumRequest::mutable_genre() {
+  // @@protoc_insertion_point(field_mutable:database.AlbumRequest.genre)
+  return _internal_mutable_genre();
+}
+inline const std::string& AlbumRequest::_internal_genre() const {
+  return genre_.Get();
+}
+inline void AlbumRequest::_internal_set_genre(const std::string& value) {
+  
+  genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void AlbumRequest::set_genre(std::string&& value) {
+  
+  genre_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:database.AlbumRequest.genre)
+}
+inline void AlbumRequest::set_genre(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:database.AlbumRequest.genre)
+}
+inline void AlbumRequest::set_genre(const char* value,
+    size_t size) {
+  
+  genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:database.AlbumRequest.genre)
+}
+inline std::string* AlbumRequest::_internal_mutable_genre() {
+  
+  return genre_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* AlbumRequest::release_genre() {
+  // @@protoc_insertion_point(field_release:database.AlbumRequest.genre)
+  return genre_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void AlbumRequest::set_allocated_genre(std::string* genre) {
+  if (genre != nullptr) {
+    
+  } else {
+    
+  }
+  genre_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), genre,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:database.AlbumRequest.genre)
+}
+
+// -------------------------------------------------------------------
+
 // Artist
 
 // string name = 1;
@@ -2122,9 +2854,80 @@ inline void ArtistRequest::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:database.ArtistRequest.name)
 }
 
+// -------------------------------------------------------------------
+
+// ImageData
+
+// bytes data = 1;
+inline void ImageData::clear_data() {
+  data_.ClearToEmpty();
+}
+inline const std::string& ImageData::data() const {
+  // @@protoc_insertion_point(field_get:database.ImageData.data)
+  return _internal_data();
+}
+inline void ImageData::set_data(const std::string& value) {
+  _internal_set_data(value);
+  // @@protoc_insertion_point(field_set:database.ImageData.data)
+}
+inline std::string* ImageData::mutable_data() {
+  // @@protoc_insertion_point(field_mutable:database.ImageData.data)
+  return _internal_mutable_data();
+}
+inline const std::string& ImageData::_internal_data() const {
+  return data_.Get();
+}
+inline void ImageData::_internal_set_data(const std::string& value) {
+  
+  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArena());
+}
+inline void ImageData::set_data(std::string&& value) {
+  
+  data_.Set(
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::move(value), GetArena());
+  // @@protoc_insertion_point(field_set_rvalue:database.ImageData.data)
+}
+inline void ImageData::set_data(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(value), GetArena());
+  // @@protoc_insertion_point(field_set_char:database.ImageData.data)
+}
+inline void ImageData::set_data(const void* value,
+    size_t size) {
+  
+  data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, ::std::string(
+      reinterpret_cast<const char*>(value), size), GetArena());
+  // @@protoc_insertion_point(field_set_pointer:database.ImageData.data)
+}
+inline std::string* ImageData::_internal_mutable_data() {
+  
+  return data_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArena());
+}
+inline std::string* ImageData::release_data() {
+  // @@protoc_insertion_point(field_release:database.ImageData.data)
+  return data_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+inline void ImageData::set_allocated_data(std::string* data) {
+  if (data != nullptr) {
+    
+  } else {
+    
+  }
+  data_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), data,
+      GetArena());
+  // @@protoc_insertion_point(field_set_allocated:database.ImageData.data)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

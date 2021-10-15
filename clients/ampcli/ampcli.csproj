@@ -8,6 +8,7 @@
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.18.0" />
     <PackageReference Include="Grpc" Version="2.40.0" />
+    <PackageReference Include="Npgsql" Version="5.0.10" />
   </ItemGroup>
 
 </Project>

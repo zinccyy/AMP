@@ -73,6 +73,15 @@ class Database final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::database::GenreList>> PrepareAsyncGetGenres(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::database::GenreList>>(PrepareAsyncGetGenresRaw(context, request, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderInterface< ::database::ImageChunk>> GetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReaderInterface< ::database::ImageChunk>>(GetAlbumCoverRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::database::ImageChunk>> AsyncGetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::database::ImageChunk>>(AsyncGetAlbumCoverRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::database::ImageChunk>> PrepareAsyncGetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::database::ImageChunk>>(PrepareAsyncGetAlbumCoverRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -108,6 +117,11 @@ class Database final {
       #else
       virtual void GetGenres(::grpc::ClientContext* context, const ::common::Empty* request, ::database::GenreList* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void GetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest* request, ::grpc::ClientReadReactor< ::database::ImageChunk>* reactor) = 0;
+      #else
+      virtual void GetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest* request, ::grpc::experimental::ClientReadReactor< ::database::ImageChunk>* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -127,6 +141,9 @@ class Database final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::database::ArtistList>* PrepareAsyncGetArtistsRaw(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::database::GenreList>* AsyncGetGenresRaw(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::database::GenreList>* PrepareAsyncGetGenresRaw(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderInterface< ::database::ImageChunk>* GetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::database::ImageChunk>* AsyncGetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderInterface< ::database::ImageChunk>* PrepareAsyncGetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -166,6 +183,15 @@ class Database final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::database::GenreList>> PrepareAsyncGetGenres(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::database::GenreList>>(PrepareAsyncGetGenresRaw(context, request, cq));
     }
+    std::unique_ptr< ::grpc::ClientReader< ::database::ImageChunk>> GetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest& request) {
+      return std::unique_ptr< ::grpc::ClientReader< ::database::ImageChunk>>(GetAlbumCoverRaw(context, request));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::database::ImageChunk>> AsyncGetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::database::ImageChunk>>(AsyncGetAlbumCoverRaw(context, request, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReader< ::database::ImageChunk>> PrepareAsyncGetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReader< ::database::ImageChunk>>(PrepareAsyncGetAlbumCoverRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -199,6 +225,11 @@ class Database final {
       #else
       void GetGenres(::grpc::ClientContext* context, const ::common::Empty* request, ::database::GenreList* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void GetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest* request, ::grpc::ClientReadReactor< ::database::ImageChunk>* reactor) override;
+      #else
+      void GetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest* request, ::grpc::experimental::ClientReadReactor< ::database::ImageChunk>* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -220,11 +251,15 @@ class Database final {
     ::grpc::ClientAsyncResponseReader< ::database::ArtistList>* PrepareAsyncGetArtistsRaw(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::database::GenreList>* AsyncGetGenresRaw(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::database::GenreList>* PrepareAsyncGetGenresRaw(::grpc::ClientContext* context, const ::common::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReader< ::database::ImageChunk>* GetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request) override;
+    ::grpc::ClientAsyncReader< ::database::ImageChunk>* AsyncGetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReader< ::database::ImageChunk>* PrepareAsyncGetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_GetArtistAlbums_;
     const ::grpc::internal::RpcMethod rpcmethod_GetArtistsWithAlbums_;
     const ::grpc::internal::RpcMethod rpcmethod_GetAlbums_;
     const ::grpc::internal::RpcMethod rpcmethod_GetArtists_;
     const ::grpc::internal::RpcMethod rpcmethod_GetGenres_;
+    const ::grpc::internal::RpcMethod rpcmethod_GetAlbumCover_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -239,6 +274,7 @@ class Database final {
     virtual ::grpc::Status GetAlbums(::grpc::ServerContext* context, const ::common::Empty* request, ::database::AlbumList* response);
     virtual ::grpc::Status GetArtists(::grpc::ServerContext* context, const ::common::Empty* request, ::database::ArtistList* response);
     virtual ::grpc::Status GetGenres(::grpc::ServerContext* context, const ::common::Empty* request, ::database::GenreList* response);
+    virtual ::grpc::Status GetAlbumCover(::grpc::ServerContext* context, const ::database::AlbumRequest* request, ::grpc::ServerWriter< ::database::ImageChunk>* writer);
   };
   template <class BaseClass>
   class WithAsyncMethod_GetArtistAlbums : public BaseClass {
@@ -340,7 +376,27 @@ class Database final {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_GetArtistAlbums<WithAsyncMethod_GetArtistsWithAlbums<WithAsyncMethod_GetAlbums<WithAsyncMethod_GetArtists<WithAsyncMethod_GetGenres<Service > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_GetAlbumCover : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_GetAlbumCover() {
+      ::grpc::Service::MarkMethodAsync(5);
+    }
+    ~WithAsyncMethod_GetAlbumCover() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAlbumCover(::grpc::ServerContext* /*context*/, const ::database::AlbumRequest* /*request*/, ::grpc::ServerWriter< ::database::ImageChunk>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetAlbumCover(::grpc::ServerContext* context, ::database::AlbumRequest* request, ::grpc::ServerAsyncWriter< ::database::ImageChunk>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(5, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_GetArtistAlbums<WithAsyncMethod_GetArtistsWithAlbums<WithAsyncMethod_GetAlbums<WithAsyncMethod_GetArtists<WithAsyncMethod_GetGenres<WithAsyncMethod_GetAlbumCover<Service > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_GetArtistAlbums : public BaseClass {
    private:
@@ -576,11 +632,49 @@ class Database final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_GetAlbumCover : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_GetAlbumCover() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(5,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::database::AlbumRequest, ::database::ImageChunk>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::database::AlbumRequest* request) { return this->GetAlbumCover(context, request); }));
+    }
+    ~ExperimentalWithCallbackMethod_GetAlbumCover() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAlbumCover(::grpc::ServerContext* /*context*/, const ::database::AlbumRequest* /*request*/, ::grpc::ServerWriter< ::database::ImageChunk>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerWriteReactor< ::database::ImageChunk>* GetAlbumCover(
+      ::grpc::CallbackServerContext* /*context*/, const ::database::AlbumRequest* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::database::ImageChunk>* GetAlbumCover(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::database::AlbumRequest* /*request*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_GetArtistAlbums<ExperimentalWithCallbackMethod_GetArtistsWithAlbums<ExperimentalWithCallbackMethod_GetAlbums<ExperimentalWithCallbackMethod_GetArtists<ExperimentalWithCallbackMethod_GetGenres<Service > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_GetArtistAlbums<ExperimentalWithCallbackMethod_GetArtistsWithAlbums<ExperimentalWithCallbackMethod_GetAlbums<ExperimentalWithCallbackMethod_GetArtists<ExperimentalWithCallbackMethod_GetGenres<ExperimentalWithCallbackMethod_GetAlbumCover<Service > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_GetArtistAlbums<ExperimentalWithCallbackMethod_GetArtistsWithAlbums<ExperimentalWithCallbackMethod_GetAlbums<ExperimentalWithCallbackMethod_GetArtists<ExperimentalWithCallbackMethod_GetGenres<Service > > > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_GetArtistAlbums<ExperimentalWithCallbackMethod_GetArtistsWithAlbums<ExperimentalWithCallbackMethod_GetAlbums<ExperimentalWithCallbackMethod_GetArtists<ExperimentalWithCallbackMethod_GetGenres<ExperimentalWithCallbackMethod_GetAlbumCover<Service > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_GetArtistAlbums : public BaseClass {
    private:
@@ -662,6 +756,23 @@ class Database final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetGenres(::grpc::ServerContext* /*context*/, const ::common::Empty* /*request*/, ::database::GenreList* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_GetAlbumCover : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_GetAlbumCover() {
+      ::grpc::Service::MarkMethodGeneric(5);
+    }
+    ~WithGenericMethod_GetAlbumCover() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAlbumCover(::grpc::ServerContext* /*context*/, const ::database::AlbumRequest* /*request*/, ::grpc::ServerWriter< ::database::ImageChunk>* /*writer*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -764,6 +875,26 @@ class Database final {
     }
     void RequestGetGenres(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(4, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_GetAlbumCover : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_GetAlbumCover() {
+      ::grpc::Service::MarkMethodRaw(5);
+    }
+    ~WithRawMethod_GetAlbumCover() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAlbumCover(::grpc::ServerContext* /*context*/, const ::database::AlbumRequest* /*request*/, ::grpc::ServerWriter< ::database::ImageChunk>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestGetAlbumCover(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncServerStreaming(5, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -957,6 +1088,44 @@ class Database final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_GetAlbumCover : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_GetAlbumCover() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(5,
+          new ::grpc::internal::CallbackServerStreamingHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const::grpc::ByteBuffer* request) { return this->GetAlbumCover(context, request); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_GetAlbumCover() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status GetAlbumCover(::grpc::ServerContext* /*context*/, const ::database::AlbumRequest* /*request*/, ::grpc::ServerWriter< ::database::ImageChunk>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerWriteReactor< ::grpc::ByteBuffer>* GetAlbumCover(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #else
+    virtual ::grpc::experimental::ServerWriteReactor< ::grpc::ByteBuffer>* GetAlbumCover(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_GetArtistAlbums : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -1092,8 +1261,35 @@ class Database final {
     virtual ::grpc::Status StreamedGetGenres(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::common::Empty,::database::GenreList>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_GetArtistAlbums<WithStreamedUnaryMethod_GetArtistsWithAlbums<WithStreamedUnaryMethod_GetAlbums<WithStreamedUnaryMethod_GetArtists<WithStreamedUnaryMethod_GetGenres<Service > > > > > StreamedUnaryService;
-  typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_GetArtistAlbums<WithStreamedUnaryMethod_GetArtistsWithAlbums<WithStreamedUnaryMethod_GetAlbums<WithStreamedUnaryMethod_GetArtists<WithStreamedUnaryMethod_GetGenres<Service > > > > > StreamedService;
+  template <class BaseClass>
+  class WithSplitStreamingMethod_GetAlbumCover : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithSplitStreamingMethod_GetAlbumCover() {
+      ::grpc::Service::MarkMethodStreamed(5,
+        new ::grpc::internal::SplitServerStreamingHandler<
+          ::database::AlbumRequest, ::database::ImageChunk>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerSplitStreamer<
+                     ::database::AlbumRequest, ::database::ImageChunk>* streamer) {
+                       return this->StreamedGetAlbumCover(context,
+                         streamer);
+                  }));
+    }
+    ~WithSplitStreamingMethod_GetAlbumCover() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status GetAlbumCover(::grpc::ServerContext* /*context*/, const ::database::AlbumRequest* /*request*/, ::grpc::ServerWriter< ::database::ImageChunk>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with split streamed
+    virtual ::grpc::Status StreamedGetAlbumCover(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::database::AlbumRequest,::database::ImageChunk>* server_split_streamer) = 0;
+  };
+  typedef WithSplitStreamingMethod_GetAlbumCover<Service > SplitStreamedService;
+  typedef WithStreamedUnaryMethod_GetArtistAlbums<WithStreamedUnaryMethod_GetArtistsWithAlbums<WithStreamedUnaryMethod_GetAlbums<WithStreamedUnaryMethod_GetArtists<WithStreamedUnaryMethod_GetGenres<WithSplitStreamingMethod_GetAlbumCover<Service > > > > > > StreamedService;
 };
 
 }  // namespace database

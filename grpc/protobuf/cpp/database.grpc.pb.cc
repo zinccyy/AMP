@@ -27,6 +27,7 @@ static const char* Database_method_names[] = {
   "/database.Database/GetAlbums",
   "/database.Database/GetArtists",
   "/database.Database/GetGenres",
+  "/database.Database/GetAlbumCover",
 };
 
 std::unique_ptr< Database::Stub> Database::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -41,6 +42,7 @@ Database::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   , rpcmethod_GetAlbums_(Database_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetArtists_(Database_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetGenres_(Database_method_names[4], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_GetAlbumCover_(Database_method_names[5], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
 ::grpc::Status Database::Stub::GetArtistAlbums(::grpc::ClientContext* context, const ::database::ArtistRequest& request, ::database::AlbumList* response) {
@@ -158,6 +160,22 @@ void Database::Stub::experimental_async::GetGenres(::grpc::ClientContext* contex
   return result;
 }
 
+::grpc::ClientReader< ::database::ImageChunk>* Database::Stub::GetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request) {
+  return ::grpc::internal::ClientReaderFactory< ::database::ImageChunk>::Create(channel_.get(), rpcmethod_GetAlbumCover_, context, request);
+}
+
+void Database::Stub::experimental_async::GetAlbumCover(::grpc::ClientContext* context, const ::database::AlbumRequest* request, ::grpc::experimental::ClientReadReactor< ::database::ImageChunk>* reactor) {
+  ::grpc::internal::ClientCallbackReaderFactory< ::database::ImageChunk>::Create(stub_->channel_.get(), stub_->rpcmethod_GetAlbumCover_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::database::ImageChunk>* Database::Stub::AsyncGetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::database::ImageChunk>::Create(channel_.get(), cq, rpcmethod_GetAlbumCover_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::database::ImageChunk>* Database::Stub::PrepareAsyncGetAlbumCoverRaw(::grpc::ClientContext* context, const ::database::AlbumRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncReaderFactory< ::database::ImageChunk>::Create(channel_.get(), cq, rpcmethod_GetAlbumCover_, context, request, false, nullptr);
+}
+
 Database::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Database_method_names[0],
@@ -209,6 +227,16 @@ Database::Service::Service() {
              ::database::GenreList* resp) {
                return service->GetGenres(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Database_method_names[5],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< Database::Service, ::database::AlbumRequest, ::database::ImageChunk>(
+          [](Database::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::database::AlbumRequest* req,
+             ::grpc::ServerWriter<::database::ImageChunk>* writer) {
+               return service->GetAlbumCover(ctx, req, writer);
+             }, this)));
 }
 
 Database::Service::~Service() {
@@ -246,6 +274,13 @@ Database::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Database::Service::GetAlbumCover(::grpc::ServerContext* context, const ::database::AlbumRequest* request, ::grpc::ServerWriter< ::database::ImageChunk>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

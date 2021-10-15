@@ -1,6 +1,9 @@
 #include "database_service.hpp"
 #include <amp/log.hpp>
 
+#include <string>
+#include <fstream>
+
 namespace amp
 {
 namespace rpc
@@ -103,6 +106,58 @@ grpc::Status DatabaseService::GetGenres(grpc::ServerContext *ctx, const common::
     }
 
     return status;
+}
+grpc::Status DatabaseService::GetAlbumCover(grpc::ServerContext *ctx, const database::AlbumRequest *request, grpc::ServerWriter<database::ImageChunk> *reply)
+{
+    AMP_LOG_INF("DatabaseService::GetAlbumCover() called");
+
+    char query_buffer[2048] = {0};
+
+    // 1: get album cover path
+    auto path_conversion = [](const pqxx::row &row) { return row[0].as<std::string>(); };
+    snprintf(query_buffer, sizeof(query_buffer),
+             "SELECT album_cover from album natural join artist natural join genre where album_name = \'%s\' and artist_name = \'%s\' and genre_name = \'%s\'",
+             request->name().c_str(), request->artist().c_str(), request->genre().c_str());
+
+    mContext->mDatabase.startTransaction();
+
+    const auto cover_path = mContext->mDatabase.getRow<std::string>(query_buffer, path_conversion);
+
+    mContext->mDatabase.commitTransaction();
+
+    // 2: load file into a buffer
+    std::ifstream file(cover_path, std::ios::in | std::ios::binary);
+
+    if (!file.is_open())
+    {
+        AMP_LOG_ERR("unable to open file %s", cover_path.c_str());
+        return grpc::Status(grpc::StatusCode::NOT_FOUND, "Unable to find album cover for the wanted album");
+    }
+    else
+    {
+        std::string buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+
+        // 3: send chunks of data
+        const auto chunk_size = 1024;
+        size_t iter = 0;
+
+        while (iter < buffer.size())
+        {
+            const auto dist = buffer.size() - iter;
+            const auto chunk_len = (dist <= chunk_size) ? dist : chunk_size;
+
+            // add temp chunk
+            database::ImageChunk chunk;
+            chunk.set_data(std::string{buffer.begin() + iter, buffer.begin() + iter + chunk_len});
+
+            reply->Write(chunk);
+
+            iter += chunk_len;
+        }
+
+        file.close();
+    }
+    return grpc::Status::OK;
 }
 } // namespace service
 } // namespace rpc

@@ -1,5 +1,10 @@
 #include "sys_service.hpp"
 #include <amp/rpc/server.hpp>
+#include <amp/log.hpp>
+
+#include <fstream>
+#include <vector>
+#include <cstdint>
 
 namespace amp
 {

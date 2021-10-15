@@ -19,7 +19,10 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace player {
 constexpr SongRequest::SongRequest(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : song_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+  : song_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , album_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , artist_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , genre_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
 struct SongRequestDefaultTypeInternal {
   constexpr SongRequestDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -54,6 +57,9 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_player_2eproto::offsets[] PROT
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::player::SongRequest, song_),
+  PROTOBUF_FIELD_OFFSET(::player::SongRequest, album_),
+  PROTOBUF_FIELD_OFFSET(::player::SongRequest, artist_),
+  PROTOBUF_FIELD_OFFSET(::player::SongRequest, genre_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::player::ActionStatus, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -63,7 +69,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_player_2eproto::offsets[] PROT
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::player::SongRequest)},
-  { 6, -1, sizeof(::player::ActionStatus)},
+  { 9, -1, sizeof(::player::ActionStatus)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -72,24 +78,25 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_player_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014player.proto\022\006player\032\014common.proto\"\033\n\013"
-  "SongRequest\022\014\n\004song\030\001 \001(\t\"8\n\014ActionStatu"
-  "s\022(\n\006status\030\001 \001(\0162\030.player.ActionStatusE"
-  "num*M\n\020ActionStatusEnum\022\006\n\002OK\020\000\022\n\n\006FAILE"
-  "D\020\001\022\022\n\016INTERNAL_ERROR\020\002\022\021\n\rREQUEST_ERROR"
-  "\020\0032\317\001\n\006Player\0227\n\010PlaySong\022\023.player.SongR"
-  "equest\032\024.player.ActionStatus\"\000\022-\n\004Play\022\r"
-  ".common.Empty\032\024.player.ActionStatus\"\000\022.\n"
-  "\005Pause\022\r.common.Empty\032\024.player.ActionSta"
-  "tus\"\000\022-\n\004Stop\022\r.common.Empty\032\024.player.Ac"
-  "tionStatus\"\000b\006proto3"
+  "\n\014player.proto\022\006player\032\014common.proto\"I\n\013"
+  "SongRequest\022\014\n\004song\030\001 \001(\t\022\r\n\005album\030\002 \001(\t"
+  "\022\016\n\006artist\030\003 \001(\t\022\r\n\005genre\030\004 \001(\t\"8\n\014Actio"
+  "nStatus\022(\n\006status\030\001 \001(\0162\030.player.ActionS"
+  "tatusEnum*M\n\020ActionStatusEnum\022\006\n\002OK\020\000\022\n\n"
+  "\006FAILED\020\001\022\022\n\016INTERNAL_ERROR\020\002\022\021\n\rREQUEST"
+  "_ERROR\020\0032\317\001\n\006Player\0227\n\010PlaySong\022\023.player"
+  ".SongRequest\032\024.player.ActionStatus\"\000\022-\n\004"
+  "Play\022\r.common.Empty\032\024.player.ActionStatu"
+  "s\"\000\022.\n\005Pause\022\r.common.Empty\032\024.player.Act"
+  "ionStatus\"\000\022-\n\004Stop\022\r.common.Empty\032\024.pla"
+  "yer.ActionStatus\"\000b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_player_2eproto_deps[1] = {
   &::descriptor_table_common_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_player_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_player_2eproto = {
-  false, false, 420, descriptor_table_protodef_player_2eproto, "player.proto", 
+  false, false, 466, descriptor_table_protodef_player_2eproto, "player.proto", 
   &descriptor_table_player_2eproto_once, descriptor_table_player_2eproto_deps, 1, 2,
   schemas, file_default_instances, TableStruct_player_2eproto::offsets,
   file_level_metadata_player_2eproto, file_level_enum_descriptors_player_2eproto, file_level_service_descriptors_player_2eproto,
@@ -140,11 +147,29 @@ SongRequest::SongRequest(const SongRequest& from)
     song_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_song(), 
       GetArena());
   }
+  album_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_album().empty()) {
+    album_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_album(), 
+      GetArena());
+  }
+  artist_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_artist().empty()) {
+    artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_artist(), 
+      GetArena());
+  }
+  genre_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_genre().empty()) {
+    genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_genre(), 
+      GetArena());
+  }
   // @@protoc_insertion_point(copy_constructor:player.SongRequest)
 }
 
 void SongRequest::SharedCtor() {
 song_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+album_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+artist_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+genre_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 SongRequest::~SongRequest() {
@@ -156,6 +181,9 @@ SongRequest::~SongRequest() {
 void SongRequest::SharedDtor() {
   GOOGLE_DCHECK(GetArena() == nullptr);
   song_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  album_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  artist_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  genre_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void SongRequest::ArenaDtor(void* object) {
@@ -175,6 +203,9 @@ void SongRequest::Clear() {
   (void) cached_has_bits;
 
   song_.ClearToEmpty();
+  album_.ClearToEmpty();
+  artist_.ClearToEmpty();
+  genre_.ClearToEmpty();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -191,6 +222,33 @@ const char* SongRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           auto str = _internal_mutable_song();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "player.SongRequest.song"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string album = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_album();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "player.SongRequest.album"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string artist = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_artist();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "player.SongRequest.artist"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string genre = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_genre();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "player.SongRequest.genre"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -232,6 +290,36 @@ failure:
         1, this->_internal_song(), target);
   }
 
+  // string album = 2;
+  if (this->album().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_album().data(), static_cast<int>(this->_internal_album().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "player.SongRequest.album");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_album(), target);
+  }
+
+  // string artist = 3;
+  if (this->artist().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_artist().data(), static_cast<int>(this->_internal_artist().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "player.SongRequest.artist");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_artist(), target);
+  }
+
+  // string genre = 4;
+  if (this->genre().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_genre().data(), static_cast<int>(this->_internal_genre().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "player.SongRequest.genre");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_genre(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -253,6 +341,27 @@ size_t SongRequest::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_song());
+  }
+
+  // string album = 2;
+  if (this->album().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_album());
+  }
+
+  // string artist = 3;
+  if (this->artist().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_artist());
+  }
+
+  // string genre = 4;
+  if (this->genre().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_genre());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -289,6 +398,15 @@ void SongRequest::MergeFrom(const SongRequest& from) {
   if (from.song().size() > 0) {
     _internal_set_song(from._internal_song());
   }
+  if (from.album().size() > 0) {
+    _internal_set_album(from._internal_album());
+  }
+  if (from.artist().size() > 0) {
+    _internal_set_artist(from._internal_artist());
+  }
+  if (from.genre().size() > 0) {
+    _internal_set_genre(from._internal_genre());
+  }
 }
 
 void SongRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -313,6 +431,9 @@ void SongRequest::InternalSwap(SongRequest* other) {
   using std::swap;
   _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
   song_.Swap(&other->song_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  album_.Swap(&other->album_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  artist_.Swap(&other->artist_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  genre_.Swap(&other->genre_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SongRequest::GetMetadata() const {

@@ -24,20 +24,21 @@ namespace Player {
     static PlayerReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgxwbGF5ZXIucHJvdG8SBnBsYXllchoMY29tbW9uLnByb3RvIhsKC1NvbmdS",
-            "ZXF1ZXN0EgwKBHNvbmcYASABKAkiOAoMQWN0aW9uU3RhdHVzEigKBnN0YXR1",
-            "cxgBIAEoDjIYLnBsYXllci5BY3Rpb25TdGF0dXNFbnVtKk0KEEFjdGlvblN0",
-            "YXR1c0VudW0SBgoCT0sQABIKCgZGQUlMRUQQARISCg5JTlRFUk5BTF9FUlJP",
-            "UhACEhEKDVJFUVVFU1RfRVJST1IQAzLPAQoGUGxheWVyEjcKCFBsYXlTb25n",
-            "EhMucGxheWVyLlNvbmdSZXF1ZXN0GhQucGxheWVyLkFjdGlvblN0YXR1cyIA",
-            "Ei0KBFBsYXkSDS5jb21tb24uRW1wdHkaFC5wbGF5ZXIuQWN0aW9uU3RhdHVz",
-            "IgASLgoFUGF1c2USDS5jb21tb24uRW1wdHkaFC5wbGF5ZXIuQWN0aW9uU3Rh",
-            "dHVzIgASLQoEU3RvcBINLmNvbW1vbi5FbXB0eRoULnBsYXllci5BY3Rpb25T",
-            "dGF0dXMiAGIGcHJvdG8z"));
+            "CgxwbGF5ZXIucHJvdG8SBnBsYXllchoMY29tbW9uLnByb3RvIkkKC1NvbmdS",
+            "ZXF1ZXN0EgwKBHNvbmcYASABKAkSDQoFYWxidW0YAiABKAkSDgoGYXJ0aXN0",
+            "GAMgASgJEg0KBWdlbnJlGAQgASgJIjgKDEFjdGlvblN0YXR1cxIoCgZzdGF0",
+            "dXMYASABKA4yGC5wbGF5ZXIuQWN0aW9uU3RhdHVzRW51bSpNChBBY3Rpb25T",
+            "dGF0dXNFbnVtEgYKAk9LEAASCgoGRkFJTEVEEAESEgoOSU5URVJOQUxfRVJS",
+            "T1IQAhIRCg1SRVFVRVNUX0VSUk9SEAMyzwEKBlBsYXllchI3CghQbGF5U29u",
+            "ZxITLnBsYXllci5Tb25nUmVxdWVzdBoULnBsYXllci5BY3Rpb25TdGF0dXMi",
+            "ABItCgRQbGF5Eg0uY29tbW9uLkVtcHR5GhQucGxheWVyLkFjdGlvblN0YXR1",
+            "cyIAEi4KBVBhdXNlEg0uY29tbW9uLkVtcHR5GhQucGxheWVyLkFjdGlvblN0",
+            "YXR1cyIAEi0KBFN0b3ASDS5jb21tb24uRW1wdHkaFC5wbGF5ZXIuQWN0aW9u",
+            "U3RhdHVzIgBiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Common.CommonReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Player.ActionStatusEnum), }, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Player.SongRequest), global::Player.SongRequest.Parser, new[]{ "Song" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Player.SongRequest), global::Player.SongRequest.Parser, new[]{ "Song", "Album", "Artist", "Genre" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Player.ActionStatus), global::Player.ActionStatus.Parser, new[]{ "Status" }, null, null, null, null)
           }));
     }
@@ -85,6 +86,9 @@ namespace Player {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SongRequest(SongRequest other) : this() {
       song_ = other.song_;
+      album_ = other.album_;
+      artist_ = other.artist_;
+      genre_ = other.genre_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -104,6 +108,39 @@ namespace Player {
       }
     }
 
+    /// <summary>Field number for the "album" field.</summary>
+    public const int AlbumFieldNumber = 2;
+    private string album_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Album {
+      get { return album_; }
+      set {
+        album_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "artist" field.</summary>
+    public const int ArtistFieldNumber = 3;
+    private string artist_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Artist {
+      get { return artist_; }
+      set {
+        artist_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "genre" field.</summary>
+    public const int GenreFieldNumber = 4;
+    private string genre_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Genre {
+      get { return genre_; }
+      set {
+        genre_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as SongRequest);
@@ -118,6 +155,9 @@ namespace Player {
         return true;
       }
       if (Song != other.Song) return false;
+      if (Album != other.Album) return false;
+      if (Artist != other.Artist) return false;
+      if (Genre != other.Genre) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -125,6 +165,9 @@ namespace Player {
     public override int GetHashCode() {
       int hash = 1;
       if (Song.Length != 0) hash ^= Song.GetHashCode();
+      if (Album.Length != 0) hash ^= Album.GetHashCode();
+      if (Artist.Length != 0) hash ^= Artist.GetHashCode();
+      if (Genre.Length != 0) hash ^= Genre.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -145,6 +188,18 @@ namespace Player {
         output.WriteRawTag(10);
         output.WriteString(Song);
       }
+      if (Album.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Album);
+      }
+      if (Artist.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Artist);
+      }
+      if (Genre.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Genre);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -158,6 +213,18 @@ namespace Player {
         output.WriteRawTag(10);
         output.WriteString(Song);
       }
+      if (Album.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Album);
+      }
+      if (Artist.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Artist);
+      }
+      if (Genre.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Genre);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -169,6 +236,15 @@ namespace Player {
       int size = 0;
       if (Song.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Song);
+      }
+      if (Album.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Album);
+      }
+      if (Artist.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Artist);
+      }
+      if (Genre.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Genre);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -183,6 +259,15 @@ namespace Player {
       }
       if (other.Song.Length != 0) {
         Song = other.Song;
+      }
+      if (other.Album.Length != 0) {
+        Album = other.Album;
+      }
+      if (other.Artist.Length != 0) {
+        Artist = other.Artist;
+      }
+      if (other.Genre.Length != 0) {
+        Genre = other.Genre;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -202,6 +287,18 @@ namespace Player {
             Song = input.ReadString();
             break;
           }
+          case 18: {
+            Album = input.ReadString();
+            break;
+          }
+          case 26: {
+            Artist = input.ReadString();
+            break;
+          }
+          case 34: {
+            Genre = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -218,6 +315,18 @@ namespace Player {
             break;
           case 10: {
             Song = input.ReadString();
+            break;
+          }
+          case 18: {
+            Album = input.ReadString();
+            break;
+          }
+          case 26: {
+            Artist = input.ReadString();
+            break;
+          }
+          case 34: {
+            Genre = input.ReadString();
             break;
           }
         }

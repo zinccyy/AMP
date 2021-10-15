@@ -1,46 +1,39 @@
 ﻿using System;
 using Grpc.Core;
+using Database;
 using Player;
 using Common;
-using Database;
 using Sys;
+using System.IO;
 
 namespace GRPClient
 {
     class Program
     {
-        static void TestDatabase(Channel channel)
+        static async void TestDatabase(Channel channel)
         {
             var client = new Database.Database.DatabaseClient(channel);
 
-            var albums = client.GetAlbums(new Common.Empty());
-            var artists = client.GetArtists(new Common.Empty());
-            var genres = client.GetGenres(new Common.Empty());
+            var call = client.GetAlbumCover(new AlbumRequest { Artist = "Mac Miller", Name = "Faces", Genre = "Hip-Hop" });
+            var binaryWriter = new BinaryWriter(File.Open("cover.jpg", FileMode.OpenOrCreate));
 
-            Console.WriteLine("Albums: ");
-            foreach(var album in albums.Albums)
+            while (await call.ResponseStream.MoveNext())
             {
-                Console.WriteLine("\t" + album.Artist + ": " + album.Name);
+                binaryWriter.Write(call.ResponseStream.Current.Data.ToByteArray());
             }
 
-            Console.WriteLine("Artists: ");
-            foreach (var artist in artists.Artists)
-            {
-                Console.WriteLine("\t" + artist.Name + ": " + artist.CoverPath);
-            }
-
-            Console.WriteLine("Genres: ");
-            foreach(var genre in genres.Genres)
-            {
-                Console.WriteLine("\t" + genre.Name);
-            }
+            Console.WriteLine("Written to file cover.jpg");
         }
 
         static void TestPlayer(Channel channel)
         {
             var client = new Player.Player.PlayerClient(channel);
-
             // TODO : implement later
+        }
+
+        static void TestSystem(Channel channel)
+        {
+            var client = new Sys.Sys.SysClient(channel);
         }
 
         static void Main(string[] args)
@@ -50,8 +43,13 @@ namespace GRPClient
             // database
             TestDatabase(channel);
 
+            // player
+            TestPlayer(channel);
 
-            channel.ShutdownAsync().Wait();
+            // system
+            TestSystem(channel);
+
+            // channel.ShutdownAsync().Wait();
             Console.ReadKey();
         }
     }

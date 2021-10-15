@@ -17,6 +17,32 @@
 
 PROTOBUF_PRAGMA_INIT_SEG
 namespace database {
+constexpr ImageChunk::ImageChunk(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : data_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct ImageChunkDefaultTypeInternal {
+  constexpr ImageChunkDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ImageChunkDefaultTypeInternal() {}
+  union {
+    ImageChunk _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ImageChunkDefaultTypeInternal _ImageChunk_default_instance_;
+constexpr AlbumRequest::AlbumRequest(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , artist_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
+  , genre_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct AlbumRequestDefaultTypeInternal {
+  constexpr AlbumRequestDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~AlbumRequestDefaultTypeInternal() {}
+  union {
+    AlbumRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT AlbumRequestDefaultTypeInternal _AlbumRequest_default_instance_;
 constexpr Artist::Artist(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : name_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
@@ -129,12 +155,38 @@ struct ArtistRequestDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ArtistRequestDefaultTypeInternal _ArtistRequest_default_instance_;
+constexpr ImageData::ImageData(
+  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
+  : data_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
+struct ImageDataDefaultTypeInternal {
+  constexpr ImageDataDefaultTypeInternal()
+    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
+  ~ImageDataDefaultTypeInternal() {}
+  union {
+    ImageData _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT ImageDataDefaultTypeInternal _ImageData_default_instance_;
 }  // namespace database
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_database_2eproto[9];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_database_2eproto[12];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_database_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_database_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_database_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::database::ImageChunk, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::database::ImageChunk, data_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::database::AlbumRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::database::AlbumRequest, name_),
+  PROTOBUF_FIELD_OFFSET(::database::AlbumRequest, artist_),
+  PROTOBUF_FIELD_OFFSET(::database::AlbumRequest, genre_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::database::Artist, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -197,20 +249,31 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_database_2eproto::offsets[] PR
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::database::ArtistRequest, name_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::database::ImageData, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::database::ImageData, data_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::database::Artist)},
-  { 7, -1, sizeof(::database::ArtistList)},
-  { 13, 20, sizeof(::database::ArtistAlbumMap_ArtistAlbumsEntry_DoNotUse)},
-  { 22, -1, sizeof(::database::ArtistAlbumMap)},
-  { 28, -1, sizeof(::database::Album)},
-  { 38, -1, sizeof(::database::AlbumList)},
-  { 44, -1, sizeof(::database::Genre)},
-  { 50, -1, sizeof(::database::GenreList)},
-  { 56, -1, sizeof(::database::ArtistRequest)},
+  { 0, -1, sizeof(::database::ImageChunk)},
+  { 6, -1, sizeof(::database::AlbumRequest)},
+  { 14, -1, sizeof(::database::Artist)},
+  { 21, -1, sizeof(::database::ArtistList)},
+  { 27, 34, sizeof(::database::ArtistAlbumMap_ArtistAlbumsEntry_DoNotUse)},
+  { 36, -1, sizeof(::database::ArtistAlbumMap)},
+  { 42, -1, sizeof(::database::Album)},
+  { 52, -1, sizeof(::database::AlbumList)},
+  { 58, -1, sizeof(::database::Genre)},
+  { 64, -1, sizeof(::database::GenreList)},
+  { 70, -1, sizeof(::database::ArtistRequest)},
+  { 76, -1, sizeof(::database::ImageData)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_ImageChunk_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_AlbumRequest_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_Artist_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_ArtistList_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_ArtistAlbumMap_ArtistAlbumsEntry_DoNotUse_default_instance_),
@@ -220,38 +283,44 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_Genre_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_GenreList_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_ArtistRequest_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::database::_ImageData_default_instance_),
 };
 
 const char descriptor_table_protodef_database_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\016database.proto\022\010database\032\014common.proto"
-  "\"*\n\006Artist\022\014\n\004name\030\001 \001(\t\022\022\n\ncover_path\030\002"
-  " \001(\t\"/\n\nArtistList\022!\n\007artists\030\001 \003(\0132\020.da"
-  "tabase.Artist\"\231\001\n\016ArtistAlbumMap\022A\n\rarti"
-  "st_albums\030\001 \003(\0132*.database.ArtistAlbumMa"
-  "p.ArtistAlbumsEntry\032D\n\021ArtistAlbumsEntry"
-  "\022\013\n\003key\030\001 \001(\t\022\036\n\005value\030\002 \001(\0132\017.database."
-  "Album:\0028\001\"R\n\005Album\022\014\n\004name\030\001 \001(\t\022\016\n\006arti"
-  "st\030\002 \001(\t\022\r\n\005genre\030\003 \001(\t\022\016\n\006folder\030\004 \001(\t\022"
-  "\014\n\004year\030\005 \001(\t\",\n\tAlbumList\022\037\n\006albums\030\001 \003"
-  "(\0132\017.database.Album\"\025\n\005Genre\022\014\n\004name\030\001 \001"
-  "(\t\",\n\tGenreList\022\037\n\006genres\030\001 \003(\0132\017.databa"
-  "se.Genre\"\035\n\rArtistRequest\022\014\n\004name\030\001 \001(\t2"
-  "\253\002\n\010Database\022A\n\017GetArtistAlbums\022\027.databa"
-  "se.ArtistRequest\032\023.database.AlbumList\"\000\022"
-  "A\n\024GetArtistsWithAlbums\022\r.common.Empty\032\030"
-  ".database.ArtistAlbumMap\"\000\0221\n\tGetAlbums\022"
-  "\r.common.Empty\032\023.database.AlbumList\"\000\0223\n"
-  "\nGetArtists\022\r.common.Empty\032\024.database.Ar"
-  "tistList\"\000\0221\n\tGetGenres\022\r.common.Empty\032\023"
-  ".database.GenreList\"\000b\006proto3"
+  "\"\032\n\nImageChunk\022\014\n\004data\030\001 \001(\014\";\n\014AlbumReq"
+  "uest\022\014\n\004name\030\001 \001(\t\022\016\n\006artist\030\002 \001(\t\022\r\n\005ge"
+  "nre\030\003 \001(\t\"*\n\006Artist\022\014\n\004name\030\001 \001(\t\022\022\n\ncov"
+  "er_path\030\002 \001(\t\"/\n\nArtistList\022!\n\007artists\030\001"
+  " \003(\0132\020.database.Artist\"\231\001\n\016ArtistAlbumMa"
+  "p\022A\n\rartist_albums\030\001 \003(\0132*.database.Arti"
+  "stAlbumMap.ArtistAlbumsEntry\032D\n\021ArtistAl"
+  "bumsEntry\022\013\n\003key\030\001 \001(\t\022\036\n\005value\030\002 \001(\0132\017."
+  "database.Album:\0028\001\"R\n\005Album\022\014\n\004name\030\001 \001("
+  "\t\022\016\n\006artist\030\002 \001(\t\022\r\n\005genre\030\003 \001(\t\022\016\n\006fold"
+  "er\030\004 \001(\t\022\014\n\004year\030\005 \001(\t\",\n\tAlbumList\022\037\n\006a"
+  "lbums\030\001 \003(\0132\017.database.Album\"\025\n\005Genre\022\014\n"
+  "\004name\030\001 \001(\t\",\n\tGenreList\022\037\n\006genres\030\001 \003(\013"
+  "2\017.database.Genre\"\035\n\rArtistRequest\022\014\n\004na"
+  "me\030\001 \001(\t\"\031\n\tImageData\022\014\n\004data\030\001 \001(\0142\356\002\n\010"
+  "Database\022A\n\017GetArtistAlbums\022\027.database.A"
+  "rtistRequest\032\023.database.AlbumList\"\000\022A\n\024G"
+  "etArtistsWithAlbums\022\r.common.Empty\032\030.dat"
+  "abase.ArtistAlbumMap\"\000\0221\n\tGetAlbums\022\r.co"
+  "mmon.Empty\032\023.database.AlbumList\"\000\0223\n\nGet"
+  "Artists\022\r.common.Empty\032\024.database.Artist"
+  "List\"\000\0221\n\tGetGenres\022\r.common.Empty\032\023.dat"
+  "abase.GenreList\"\000\022A\n\rGetAlbumCover\022\026.dat"
+  "abase.AlbumRequest\032\024.database.ImageChunk"
+  "\"\0000\001b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_database_2eproto_deps[1] = {
   &::descriptor_table_common_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_database_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_database_2eproto = {
-  false, false, 829, descriptor_table_protodef_database_2eproto, "database.proto", 
-  &descriptor_table_database_2eproto_once, descriptor_table_database_2eproto_deps, 1, 9,
+  false, false, 1012, descriptor_table_protodef_database_2eproto, "database.proto", 
+  &descriptor_table_database_2eproto_once, descriptor_table_database_2eproto_deps, 1, 12,
   schemas, file_default_instances, TableStruct_database_2eproto::offsets,
   file_level_metadata_database_2eproto, file_level_enum_descriptors_database_2eproto, file_level_service_descriptors_database_2eproto,
 };
@@ -264,6 +333,477 @@ descriptor_table_database_2eproto_metadata_getter(int index) {
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_database_2eproto(&descriptor_table_database_2eproto);
 namespace database {
+
+// ===================================================================
+
+class ImageChunk::_Internal {
+ public:
+};
+
+ImageChunk::ImageChunk(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:database.ImageChunk)
+}
+ImageChunk::ImageChunk(const ImageChunk& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_data().empty()) {
+    data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_data(), 
+      GetArena());
+  }
+  // @@protoc_insertion_point(copy_constructor:database.ImageChunk)
+}
+
+void ImageChunk::SharedCtor() {
+data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+ImageChunk::~ImageChunk() {
+  // @@protoc_insertion_point(destructor:database.ImageChunk)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ImageChunk::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  data_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void ImageChunk::ArenaDtor(void* object) {
+  ImageChunk* _this = reinterpret_cast< ImageChunk* >(object);
+  (void)_this;
+}
+void ImageChunk::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ImageChunk::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ImageChunk::Clear() {
+// @@protoc_insertion_point(message_clear_start:database.ImageChunk)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  data_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ImageChunk::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bytes data = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_data();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ImageChunk::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:database.ImageChunk)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes data = 1;
+  if (this->data().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        1, this->_internal_data(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:database.ImageChunk)
+  return target;
+}
+
+size_t ImageChunk::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:database.ImageChunk)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes data = 1;
+  if (this->data().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_data());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ImageChunk::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:database.ImageChunk)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ImageChunk* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ImageChunk>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:database.ImageChunk)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:database.ImageChunk)
+    MergeFrom(*source);
+  }
+}
+
+void ImageChunk::MergeFrom(const ImageChunk& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:database.ImageChunk)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.data().size() > 0) {
+    _internal_set_data(from._internal_data());
+  }
+}
+
+void ImageChunk::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:database.ImageChunk)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ImageChunk::CopyFrom(const ImageChunk& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:database.ImageChunk)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ImageChunk::IsInitialized() const {
+  return true;
+}
+
+void ImageChunk::InternalSwap(ImageChunk* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  data_.Swap(&other->data_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ImageChunk::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+class AlbumRequest::_Internal {
+ public:
+};
+
+AlbumRequest::AlbumRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:database.AlbumRequest)
+}
+AlbumRequest::AlbumRequest(const AlbumRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_name(), 
+      GetArena());
+  }
+  artist_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_artist().empty()) {
+    artist_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_artist(), 
+      GetArena());
+  }
+  genre_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_genre().empty()) {
+    genre_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_genre(), 
+      GetArena());
+  }
+  // @@protoc_insertion_point(copy_constructor:database.AlbumRequest)
+}
+
+void AlbumRequest::SharedCtor() {
+name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+artist_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+genre_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+AlbumRequest::~AlbumRequest() {
+  // @@protoc_insertion_point(destructor:database.AlbumRequest)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void AlbumRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  artist_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  genre_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void AlbumRequest::ArenaDtor(void* object) {
+  AlbumRequest* _this = reinterpret_cast< AlbumRequest* >(object);
+  (void)_this;
+}
+void AlbumRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void AlbumRequest::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void AlbumRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:database.AlbumRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  name_.ClearToEmpty();
+  artist_.ClearToEmpty();
+  genre_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* AlbumRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string name = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "database.AlbumRequest.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string artist = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_artist();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "database.AlbumRequest.artist"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string genre = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_genre();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "database.AlbumRequest.genre"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* AlbumRequest::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:database.AlbumRequest)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (this->name().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "database.AlbumRequest.name");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_name(), target);
+  }
+
+  // string artist = 2;
+  if (this->artist().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_artist().data(), static_cast<int>(this->_internal_artist().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "database.AlbumRequest.artist");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_artist(), target);
+  }
+
+  // string genre = 3;
+  if (this->genre().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_genre().data(), static_cast<int>(this->_internal_genre().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "database.AlbumRequest.genre");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_genre(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:database.AlbumRequest)
+  return target;
+}
+
+size_t AlbumRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:database.AlbumRequest)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string name = 1;
+  if (this->name().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string artist = 2;
+  if (this->artist().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_artist());
+  }
+
+  // string genre = 3;
+  if (this->genre().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_genre());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void AlbumRequest::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:database.AlbumRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  const AlbumRequest* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<AlbumRequest>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:database.AlbumRequest)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:database.AlbumRequest)
+    MergeFrom(*source);
+  }
+}
+
+void AlbumRequest::MergeFrom(const AlbumRequest& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:database.AlbumRequest)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.name().size() > 0) {
+    _internal_set_name(from._internal_name());
+  }
+  if (from.artist().size() > 0) {
+    _internal_set_artist(from._internal_artist());
+  }
+  if (from.genre().size() > 0) {
+    _internal_set_genre(from._internal_genre());
+  }
+}
+
+void AlbumRequest::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:database.AlbumRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void AlbumRequest::CopyFrom(const AlbumRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:database.AlbumRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool AlbumRequest::IsInitialized() const {
+  return true;
+}
+
+void AlbumRequest::InternalSwap(AlbumRequest* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  artist_.Swap(&other->artist_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+  genre_.Swap(&other->genre_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata AlbumRequest::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
 
 // ===================================================================
 
@@ -2083,9 +2623,210 @@ void ArtistRequest::InternalSwap(ArtistRequest* other) {
 }
 
 
+// ===================================================================
+
+class ImageData::_Internal {
+ public:
+};
+
+ImageData::ImageData(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena) {
+  SharedCtor();
+  RegisterArenaDtor(arena);
+  // @@protoc_insertion_point(arena_constructor:database.ImageData)
+}
+ImageData::ImageData(const ImageData& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_data().empty()) {
+    data_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_data(), 
+      GetArena());
+  }
+  // @@protoc_insertion_point(copy_constructor:database.ImageData)
+}
+
+void ImageData::SharedCtor() {
+data_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+ImageData::~ImageData() {
+  // @@protoc_insertion_point(destructor:database.ImageData)
+  SharedDtor();
+  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+void ImageData::SharedDtor() {
+  GOOGLE_DCHECK(GetArena() == nullptr);
+  data_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void ImageData::ArenaDtor(void* object) {
+  ImageData* _this = reinterpret_cast< ImageData* >(object);
+  (void)_this;
+}
+void ImageData::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
+}
+void ImageData::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void ImageData::Clear() {
+// @@protoc_insertion_point(message_clear_start:database.ImageData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  data_.ClearToEmpty();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* ImageData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // bytes data = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_data();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag,
+            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+            ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ImageData::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:database.ImageData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // bytes data = 1;
+  if (this->data().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        1, this->_internal_data(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:database.ImageData)
+  return target;
+}
+
+size_t ImageData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:database.ImageData)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes data = 1;
+  if (this->data().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_data());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ImageData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:database.ImageData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ImageData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ImageData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:database.ImageData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:database.ImageData)
+    MergeFrom(*source);
+  }
+}
+
+void ImageData::MergeFrom(const ImageData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:database.ImageData)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.data().size() > 0) {
+    _internal_set_data(from._internal_data());
+  }
+}
+
+void ImageData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:database.ImageData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ImageData::CopyFrom(const ImageData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:database.ImageData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ImageData::IsInitialized() const {
+  return true;
+}
+
+void ImageData::InternalSwap(ImageData* other) {
+  using std::swap;
+  _internal_metadata_.Swap<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(&other->_internal_metadata_);
+  data_.Swap(&other->data_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArena());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ImageData::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace database
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::database::ImageChunk* Arena::CreateMaybeMessage< ::database::ImageChunk >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::database::ImageChunk >(arena);
+}
+template<> PROTOBUF_NOINLINE ::database::AlbumRequest* Arena::CreateMaybeMessage< ::database::AlbumRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::database::AlbumRequest >(arena);
+}
 template<> PROTOBUF_NOINLINE ::database::Artist* Arena::CreateMaybeMessage< ::database::Artist >(Arena* arena) {
   return Arena::CreateMessageInternal< ::database::Artist >(arena);
 }
@@ -2112,6 +2853,9 @@ template<> PROTOBUF_NOINLINE ::database::GenreList* Arena::CreateMaybeMessage< :
 }
 template<> PROTOBUF_NOINLINE ::database::ArtistRequest* Arena::CreateMaybeMessage< ::database::ArtistRequest >(Arena* arena) {
   return Arena::CreateMessageInternal< ::database::ArtistRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::database::ImageData* Arena::CreateMaybeMessage< ::database::ImageData >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::database::ImageData >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

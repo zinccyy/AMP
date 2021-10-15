@@ -15,7 +15,17 @@ service Database {
 	rpc GetArtists(common.Empty) returns (ArtistList) {}
 	rpc GetGenres(common.Empty) returns (GenreList) {}
 
-	rpc GetAlbumCover(Album) returns (stream ImageData) {}
+	rpc GetAlbumCover(AlbumRequest) returns (stream ImageChunk) {}
+}
+
+message ImageChunk {
+	bytes data = 1;
+}
+
+message AlbumRequest {
+	string name = 1;
+	string artist = 2;
+	string genre = 3;
 }
 
 message Artist {
